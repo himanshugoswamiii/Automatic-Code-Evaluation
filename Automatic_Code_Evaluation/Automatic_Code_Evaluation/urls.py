@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from Automatic_Code_Evaluation import home
+from Automatic_Code_Evaluation.evaluate import evaluator
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('submit_code/', evaluator.code_submit),
+    path('evaluator', evaluator.executor),
+    path('', home.index)
 ]

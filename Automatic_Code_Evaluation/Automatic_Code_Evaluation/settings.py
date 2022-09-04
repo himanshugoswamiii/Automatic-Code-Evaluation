@@ -54,7 +54,7 @@ ROOT_URLCONF = 'Automatic_Code_Evaluation.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [f"{BASE_DIR}/htmls"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
