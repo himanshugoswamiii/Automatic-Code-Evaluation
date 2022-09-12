@@ -17,4 +17,11 @@ def executor(request):
     op = req.post("https://api.jdoodle.com/v1/execute",json=input)
     print(op.json())
     #return render(request, "submit_code.html", data)
+
 executor("")
+
+def contact(request):
+    return render(request,'contact.html')
+
+
+

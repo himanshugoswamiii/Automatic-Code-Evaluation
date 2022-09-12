@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('submit_code/', evaluator.code_submit),
     path('evaluator', evaluator.executor),
+    path('contact/', evaluator.contact),
     path('', home.index)
 ]
