@@ -79,7 +79,7 @@ def any_error(response):
 
 
 def get_time_memory(response):
-    return response['cpuTime'] + " s", response['memory'] + " kb"
+    return str(response['cpuTime']) + " s", str(response['memory']) + " kb"
 
 
 def get_ex(filename):
@@ -95,7 +95,7 @@ def get_testcases(filename, std_in='', automated=False):
     if not automated:
         return data
     else:
-        return output(filename, std_in)
+        return output(filename, std_in)[0]
 
 
 def output(filename, std_in=''):
@@ -112,6 +112,36 @@ def output(filename, std_in=''):
             raise Exception(response['error'])
         else:
             return [response['output'], get_time_memory(response)]
+
+
+def evaluate_students(path, testcase, actual_output):
+    result = []
+    files = os.listdir(path)
+    for file in files:
+        if verify_file(file):
+            name, roll_no = get_name_roll(file.split(".")[0])
+            res = None
+            time = None
+            memory = None
+            error = "NA"
+            try:
+                student_output = output(path+"/"+file, testcase)
+                if student_output[0] == actual_output:
+                    res = "Accepted"
+                    time = student_output[1][0]
+                    memory = student_output[1][1]
+
+                else:
+                    res = "Rejected"
+                    time = "NA"
+                    memory = "NA"
+            except Exception as e:
+                error = e
+                res = "Rejected"
+                time = "NA"
+                memory = "NA"
+            result.append((name, roll_no, res, time, memory, error))
+    return result
 
 
 if __name__ == '__main__':
@@ -132,4 +162,6 @@ if __name__ == '__main__':
 
     actual_output = output(code_file, testcases)
 
-    # student processing is left only
+    students_program_path = input("Enter path of student's program directory\n")
+    results = evaluate_students(students_program_path,testcases,actual_output[0])
+    print(results)
