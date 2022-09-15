@@ -1,6 +1,7 @@
-<html>
-<title>Submit Your Code</title>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Submit your code{% endblock title %}
+{% block body %}
 <form method="GET" action="/evaluator">
 <textarea style="width: 303px; height: 426px;" name="code">
 </textarea>
@@ -14,5 +15,4 @@ Error : {{error}}
 <br>
 <br>
 {{output}}
-</body>
-</html>
+{% endblock body %}
