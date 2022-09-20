@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import requests as req
-import Automatic_Code_Evaluation.testing.main
+import application.testing.main
 
 def code_submit(request):
     return render(request, "submit_code.html")
@@ -34,3 +34,5 @@ def executor(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
+

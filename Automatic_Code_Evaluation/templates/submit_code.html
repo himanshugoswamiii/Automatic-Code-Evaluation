@@ -2,13 +2,26 @@
 
 {% block title %}Submit your code{% endblock title %}
 {% block body %}
-<form method="GET" action="/evaluator">
-<textarea style="width: 303px; height: 426px;" name="code">
-</textarea>
-    <br><br>
-    <input type="submit" value="Submit" name="submit">
-</form>
+<div class="container mt-5">
+    <form  action="upload" method="POST" enctype="multipart/form-data">
 
+        <div class="form-group">
+          <label for="{{form.file_name.id_for_label}}">File Name</label>
+          {{form.file_name}}         
+        </div>
+
+        <div class="form-group">
+            <label for="{{form.files_data.id_for_label}}">File</label>
+            {{form.files_data}}         
+          </div>
+          {% csrf_token %}
+        
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+</div>
+    
 <br>
 <br>
 Error : {{error}}
