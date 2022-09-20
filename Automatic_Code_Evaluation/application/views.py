@@ -1,4 +1,5 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
+from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
@@ -25,7 +26,7 @@ def submit_code(request):
 
             file_upload(file_name=name, my_file=the_files).save()
             
-            return HttpResponse("file upload")
+            return HttpResponse("file uploaded")
         else:
             return HttpResponse('error')
 
