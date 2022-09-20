@@ -1,27 +1,36 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 import requests as req
+import Automatic_Code_Evaluation.testing.main
 
 def code_submit(request):
     return render(request, "submit_code.html")
 
-def executor(request):
-    # code = request.GET['code']
-    # data = {'request': request, 'error': True, 'output': "This is the output"}
-    input = {'clientId': '26558e6412ef9b47e68c356c08e24eb7',
-             'clientSecret': '43c73c299f602fbb7dacb3023bd0e64a6068a0f18ffbd81f327b840e959a187',
-             'language': 'java',
-             'versionIndex': '0',
-             'stdin': '',
-             'script': ''
-             }
-    op = req.post("https://api.jdoodle.com/v1/execute",json=input)
-    print(op.json())
-    #return render(request, "submit_code.html", data)
+def form(request):
+    return render(request,"testing.html")
 
-executor("")
+
+def executor(request):
+    teacher = request.FILES['teachercode']
+    student = request.FILES['student']
+    testcase = request.FILES['testcase']
+    basedir = "/home/aniket/PycharmProjects/Automatic-Code-Evaluation"
+    with open(basedir + "/" + str(teacher.name), 'wb+') as dest:
+        for ch in teacher.chunks():
+            dest.write(ch)
+    with open(basedir + "/" + str(testcase.name), 'wb+') as dest:
+        for ch in testcase.chunks():
+            dest.write(ch)
+    with open(basedir + "/" + str(student.name), 'wb+') as dest:
+        for ch in student.chunks():
+            dest.write(ch)
+    return HttpResponse("Done")
+
+
+
+
+
+
 
 def contact(request):
-    return render(request,'contact.html')
-
-
-
+    return render(request, 'contact.html')

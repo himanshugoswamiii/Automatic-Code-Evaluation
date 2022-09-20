@@ -38,6 +38,6 @@ def write_header(sheet):
         i += 1
 
 
-write("record.xls",
-      [["Aniket", 10, "Accepted", "27 s", "3485 kb", "NA"], ["Aniket", 11, "Accepted", "27 s", "3485 kb", "NA"],
-       ["Aniket", 13, "Rejected", "NA", "NA", "Compile time error"]])
+# write("record.xls",
+#       [["Aniket", 10, "Accepted", "27 s", "3485 kb", "NA"], ["Aniket", 11, "Accepted", "27 s", "3485 kb", "NA"],
+#        ["Aniket", 13, "Rejected", "NA", "NA", "Compile time error"]])

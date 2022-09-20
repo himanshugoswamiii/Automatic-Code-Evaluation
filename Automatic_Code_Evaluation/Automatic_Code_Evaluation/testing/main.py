@@ -1,6 +1,7 @@
 import re
 import requests as req
 import os
+import Automatic_Code_Evaluation.excel.excel_writer as writer
 
 
 def get_metadata(language='java', version_index=0, std_in='', script=''):
@@ -125,7 +126,7 @@ def evaluate_students(path, testcase, actual_output):
             memory = None
             error = "NA"
             try:
-                student_output = output(path+"/"+file, testcase)
+                student_output = output(path + "/" + file, testcase)
                 if student_output[0] == actual_output:
                     res = "Accepted"
                     time = student_output[1][0]
@@ -142,6 +143,13 @@ def evaluate_students(path, testcase, actual_output):
                 memory = "NA"
             result.append((name, roll_no, res, time, memory, error))
     return result
+
+
+def interface(code_file, testcase_file, automated, student_program_path, stdin='', ):
+    testcases = get_testcases(testcase_file, std_in, automated)
+    actual_output = output(code_file, testcases)
+    results = evaluate_students(students_program_path, testcases, actual_output[0])
+    writer.write("student_record.xls", results)
 
 
 if __name__ == '__main__':
@@ -163,5 +171,5 @@ if __name__ == '__main__':
     actual_output = output(code_file, testcases)
 
     students_program_path = input("Enter path of student's program directory\n")
-    results = evaluate_students(students_program_path,testcases,actual_output[0])
-    print(results)
+    results = evaluate_students(students_program_path, testcases, actual_output[0])
+    writer.write("student_record.xls", results)

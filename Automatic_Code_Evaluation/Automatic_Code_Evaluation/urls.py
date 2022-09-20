@@ -23,5 +23,7 @@ urlpatterns = [
     path('submit_code/', evaluator.code_submit),
     path('evaluator', evaluator.executor),
     path('contact/', evaluator.contact),
-    path('', home.index)
+    path('', home.index),
+    path('evaluate',evaluator.executor),
+    path('testing/',evaluator.form)
 ]
