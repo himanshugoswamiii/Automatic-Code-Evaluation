@@ -9,3 +9,6 @@ media: directory where our files (teacher,test case, student) will be stored
 ```
 pip install xlwt
 ```
+
+yes : 
+- stin to the testcase file (text file)

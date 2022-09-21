@@ -8,6 +8,7 @@ urlpatterns = [
     path('evaluator', evaluator.executor),
     path('contact/', evaluator.contact),
     path('evaluate',evaluator.executor),
+    path('evaluate_code',views.evaluate_code),
     path("submitcode/", views.submit_code,name='upload'),
     path("submitcode/upload", views.submit_code,name='upload'),
     path('testing/',evaluator.form)

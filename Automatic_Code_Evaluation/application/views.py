@@ -50,5 +50,9 @@ def show_file(request):
         }
 
     return render(request, 'view.html', context)
+
+def evaluate_code(request):
+
+    return render(request,'evaluate_code.html')
     
 
