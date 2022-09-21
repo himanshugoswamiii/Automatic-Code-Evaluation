@@ -4,9 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/mine.css" rel="stylesheet">
+    <link href="/static/dark_mode/dark-mode.css" rel="stylesheet">
     <title> {% block title %} {% endblock title %}| Automatic Code Evaluator </title>
   </head>
-  <body>
+  <body class="myfont">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <!-- To change to light theme change dark in above line to light -->
       <div class="container-fluid">
@@ -14,6 +16,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+          <!-- Navigation Bar -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -38,12 +41,30 @@
             </li>
           </ul>
         </div>
+
+          <!-- Spinners -->
+          <div class="px-4">
+              <div class="spinner-grow text-primary spinner_2" role="status">
+              </div>
+              <div class="spinner-grow text-success spinner_2" role="status">
+              </div>
+              <div class="spinner-grow text-danger spinner_2" role="status">
+              </div>
+          </div>
+
+           <!-- Dark Mode Option -->
+          <div class="form-check form-switch py-2">
+            <input type="checkbox" class="form-check-input" id="darkSwitch">
+            <label class="form-check-label" for="darkSwitch">🌓</label>
+          </div>
+
       </div>
     </nav>
 
-    {% block body %}
-    {% endblock body %}
+      {% block body %}
+      {% endblock body %}
     <script src="/static/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/static/mine.js"></script>
+    <script src="/static/dark_mode/dark-mode-switch.min.js"></script>
   </body>
 </html>

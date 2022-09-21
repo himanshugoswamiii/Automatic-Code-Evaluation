@@ -4,26 +4,27 @@
 
 {% block body %}
 <div class="container py-6">
+
     <form method="POST" enctype="multipart/form-data" action="/evaluate">
         {% csrf_token %}
 
-            <div>
+            <div class="mt-5">
                 <label>Teacher Code</label>
                 <input type="file" name="teachercode" class="form-control">
             </div>
 
-            <div class="mt-2">
+            <div class="mt-5">
             <label>Testcase File</label>
             <input type="file" name="testcase" class="form-control">
             </div>
 
-            <div class="mt-2">
+            <div class="mt-5">
                 <label>Student Files</label>
                 <input type="file" name="student" class="form-control" multiple>
             </div>
 
 
-            <div class="form-group mt-4">
+            <div class="form-group mt-5">
                 <b><label>Do you want to automate test cases :</label></b> 
 
                 <div class="container">
@@ -37,7 +38,7 @@
 
                 <!-- The code to toggle -->
                 <div class="container" id="mycode">
-                    <textarea class="form-control" rows="5" id="comment" placeholder="Enter you test case here"></textarea>
+                    <textarea class="form-control" rows="5" id="comment" placeholder="Stdin to Test case code"></textarea>
                 </div>
             </div>
 
@@ -49,9 +50,14 @@
 
 
         <br>
-        <br>
-        <input type="submit">
+        <div class="text-center">
+            <input type="submit" class="btn btn-success">
+        </div>
     </form>
+
+    <br>
+
+    <!-- Bootstrap Spinners -->
 </div>
 
 

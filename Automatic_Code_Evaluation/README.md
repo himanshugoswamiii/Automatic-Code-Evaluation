@@ -12,3 +12,9 @@ pip install xlwt
 
 yes : 
 - stin to the testcase file (text file)
+
+## excepiton
+`.py` `.java` 
+Only code files will be uploaded
+
+
