@@ -1,4 +1,4 @@
-"""Automatic_Code_Evaluation URL Configuration
+"""Hello URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -14,16 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from Automatic_Code_Evaluation import home
-from Automatic_Code_Evaluation.evaluate import evaluator
+from django.urls import path,include
+
+# added for file handling
+from django.conf import settings
+from django.conf.urls.static import static
+
+admin.site.site_header = "Automatic Code Evaluation"
+admin.site.site_title = "Portal"
+admin.site.index_title = "Welcome to the Portal"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('submit_code/', evaluator.code_submit),
-    path('evaluator', evaluator.executor),
-    path('contact/', evaluator.contact),
-    path('', home.index),
-    path('evaluate',evaluator.executor),
-    path('testing/',evaluator.form)
+    path('', include('application.urls'))
 ]
+
+## added for file handling
+urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+

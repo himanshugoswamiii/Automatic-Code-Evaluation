@@ -1,7 +1,7 @@
 import re
 import requests as req
 import os
-import Automatic_Code_Evaluation.excel.excel_writer as writer
+import application.excel.excel_writer as writer
 
 
 def get_metadata(language='java', version_index=0, std_in='', script=''):
