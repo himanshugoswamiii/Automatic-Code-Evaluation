@@ -1,7 +1,7 @@
 import re
 import requests as req
 import os
-import application.excel.excel_writer as writer
+import application.evaluate.excel_writer as writer
 
 
 def get_metadata(language='java', version_index=0, std_in='', script=''):
@@ -145,11 +145,13 @@ def evaluate_students(path, testcase, actual_output):
     return result
 
 
-def interface(code_file, testcase_file, automated, student_program_path, stdin='', ):
+def interface(code_file, testcase_file, automated, students_program_path, std_in,basedir):
     testcases = get_testcases(testcase_file, std_in, automated)
     actual_output = output(code_file, testcases)
     results = evaluate_students(students_program_path, testcases, actual_output[0])
-    writer.write("student_record.xls", results)
+    result_file = basedir + "/student_record.xls"
+    writer.write(result_file, results)
+    return result_file
 
 
 if __name__ == '__main__':
