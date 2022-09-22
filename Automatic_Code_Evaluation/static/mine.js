@@ -30,3 +30,10 @@ function add(type) {
     text.appendChild(element);
 
 }
+
+// Highlight the active button
+// Add active class to the current button (highlight it)
+function makeActive() {
+  var element = document.getElementById("l1");
+  element.classList.add("active");
+} 

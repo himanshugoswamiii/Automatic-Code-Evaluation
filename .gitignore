@@ -1,0 +1,5 @@
+media/
+
+# Byte-Compiled/ Optimized / DLL files
+__pycache__/
+*.py[cod]
