@@ -3,14 +3,15 @@ import os
 from django.http import FileResponse
 import application.evaluate.main as main
 import shutil
+from django.shortcuts import render
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Modify no of parents according to this file's location
 basedir = os.path.join(BASE_DIR, 'media/')
 
 
 def fetch_files(request):
-    ip = request.META.get('REMOTE_ADDR').replace('.','_')
-    os.makedirs(basedir + str(ip)+"/results")
+    ip = request.META.get('REMOTE_ADDR').replace('.', '_')
+    os.makedirs(basedir + str(ip) + "/results")
     files = [request.FILES['teachercode'], request.FILES['testcase'], *request.FILES.getlist('student')]
     for file in files:
         file_name = basedir + str(ip) + "/" + str(file.name)
@@ -31,21 +32,25 @@ def download(result_file):
 
 
 def cleanup(request):
-    ip = request.META.get('REMOTE_ADDR').replace('.','_')
+    ip = request.META.get('REMOTE_ADDR').replace('.', '_')
     shutil.rmtree(basedir + str(ip))
 
 
 # To upload the file
 def executor(request):
-    ip = request.META.get('REMOTE_ADDR').replace('.','_')
-    files = fetch_files(request)
-    automated = request.POST["optradio"]
-    if automated == 'Yes':
-        automated = True
-    else:
-        automated = False
-    stdin = request.POST["stdin"]
-    result_file = main.interface(files[0], files[1], automated, files[2], stdin, basedir + str(ip) + "/results")
-    response = download(result_file)
-    cleanup(request)
+    try:
+        ip = request.META.get('REMOTE_ADDR').replace('.', '_')
+        files = fetch_files(request)
+        automated = request.POST["optradio"]
+        if automated == 'Yes':
+            automated = True
+        else:
+            automated = False
+        stdin = request.POST["stdin"]
+        result_file = main.interface(files[0], files[1], automated, files[2], stdin, basedir + str(ip) + "/results")
+        response = download(result_file)
+        cleanup(request)
+    except Exception as e:
+        cleanup(request)
+        return render(request, "error.html", {'message': e.__str__()})
     return response

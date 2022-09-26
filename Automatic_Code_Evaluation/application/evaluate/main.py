@@ -76,7 +76,8 @@ def execute(metadata):
 
 
 def any_error(response):
-    return response['statusCode'] != 200
+    print(response)
+    return response['statusCode'] != 200 or (response['cpuTime'] is None and response['memory'] is None)
 
 
 def get_time_memory(response):
@@ -110,7 +111,10 @@ def output(filename, std_in=''):
                                 script=data)
         response = execute(metadata)
         if any_error(response):
-            raise Exception(response['error'])
+            if 'error' in response:
+                raise Exception(response['error'])
+            else:
+                raise Exception(response['output'])
         else:
             return [response['output'], get_time_memory(response)]
 
@@ -137,7 +141,7 @@ def evaluate_students(path, testcase, actual_output):
                     time = "NA"
                     memory = "NA"
             except Exception as e:
-                error = e
+                error = e.__str__()
                 res = "Rejected"
                 time = "NA"
                 memory = "NA"
@@ -145,33 +149,13 @@ def evaluate_students(path, testcase, actual_output):
     return result
 
 
-def interface(code_file, testcase_file, automated, students_program_path, std_in,basedir):
+def interface(code_file, testcase_file, automated, students_program_path, std_in, basedir):
     testcases = get_testcases(testcase_file, std_in, automated)
     actual_output = output(code_file, testcases)
+    if actual_output[0].endswith("JDoodle - output Limit reached.\n") or testcases.endswith(
+            "JDoodle - output Limit reached.\n"):
+        raise Exception("Limit exceeded\n")
     results = evaluate_students(students_program_path, testcases, actual_output[0])
     result_file = basedir + "/student_record.xls"
     writer.write(result_file, results)
     return result_file
-
-
-if __name__ == '__main__':
-    code_file = input("Enter your code file absolute path\n")
-    testcase_file = input("Enter test case file absolute path\n")
-    automated = input(" Do you want to automate test cases [Y/N]\n")
-    if automated in ['y', 'Y']:
-        automated = True
-    else:
-        automated = False
-
-    std_in = ''
-    if automated:
-        choice = input("Any input to test case file [Y/N]\n")
-        if choice in ['y', 'Y']:
-            std_in = input("Give Input\n")
-    testcases = get_testcases(testcase_file, std_in, automated)
-
-    actual_output = output(code_file, testcases)
-
-    students_program_path = input("Enter path of student's program directory\n")
-    results = evaluate_students(students_program_path, testcases, actual_output[0])
-    writer.write("student_record.xls", results)
