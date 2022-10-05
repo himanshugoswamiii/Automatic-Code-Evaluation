@@ -11,3 +11,7 @@ def contact(request):
 
 def evaluate_code(request):
     return render(request, 'evaluate_code.html')
+
+
+def evaluate_code2(request):
+    return render(request, 'evaluate_code_2.html')
