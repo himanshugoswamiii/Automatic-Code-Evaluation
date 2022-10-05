@@ -87,10 +87,19 @@ def get_ex(filename):
         return temp[1].strip()
 
 
+def searchfilewithext(basedir, ext):
+    files = os.listdir(basedir)
+    for file in files:
+        if file.endswith("." + ext):
+            return file
+    raise Exception("IO file is not found")
+
+
 def io_file(basedir, ext):
+    file = searchfilewithext(basedir, ext)
     try:
         text = None
-        with open(basedir + "io_file." + ext) as f:
+        with open(basedir + "/" + file) as f:
             text = f.read()
         return text
     except Exception as e:
@@ -147,7 +156,7 @@ def evaluate_students(path, testcase):
             time = None
             language = None
             try:
-                status = output(path + "/" + file, testcase)
+                status = output(path + "/" + file, path + "/io", testcase)
                 details = parse(status[0])
                 log_data = details[0]
                 score = details[1]
