@@ -1,10 +1,12 @@
 from zipfile import ZipFile
-import os
-
 
 def createZip(location):
+    import os
+    lo = os.getcwd()
+    os.chdir(location)
     filenames = os.listdir(location)
-    zipObj = ZipFile(location + 'result.zip', 'w')
+    zipObj = ZipFile('result.zip', 'w')
     for file_name in filenames:
-        zipObj.write(location + " / " + file_name)
+        zipObj.write(file_name)
     zipObj.close()
+    os.chdir(lo)

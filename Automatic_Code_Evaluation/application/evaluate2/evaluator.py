@@ -34,7 +34,7 @@ def download(result_file):
     data = open(result_file, 'rb')
     response = FileResponse(data)
     response['Content-Type'] = 'application/x-binary'
-    response['Content-Disposition'] = 'attachment; filename="student_record.xls"'
+    response['Content-Disposition'] = 'attachment; filename="result.zip"'
     return response
 
 
@@ -48,8 +48,8 @@ def executor(request):
     try:
         files = fetch_files(request)
         main.interface(files[0], files[1])
-        zip.zipcreator(files[1]+"/results")
-        response = download(files[1]+"/result/result.zip")
+        zip.createZip(files[1]+"/results")
+        response = download(files[1]+"/results/result.zip")
         cleanup(request)
     except Exception as e:
         cleanup(request)

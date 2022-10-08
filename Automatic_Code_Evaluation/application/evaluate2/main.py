@@ -1,7 +1,7 @@
 import re
 import requests as req
 import os
-import application.evaluate.excel_writer as writer
+import application.evaluate2.excel_writer as writer
 
 
 def get_metadata(language='java', version_index=0, std_in='', script=''):
@@ -116,7 +116,13 @@ def output(filename, basedir, std_in=''):
         language_details = ext_to_lang()[extension]
         metadata = get_metadata(language=language_details[0], version_index=language_details[1], std_in=std_in,
                                 script=data + "\n" + io_data)
+
+        with open("/home/aniket/Downloads/Codes/temp.java" ,'w') as f:
+            f.write(data + "\n" + io_data)
+
+        print(metadata)
         response = execute(metadata)
+        print(response)
         if any_error(response):
             if 'error' in response:
                 raise Exception(response['error'])
@@ -133,16 +139,17 @@ def parse(status):
     count = 0
     score = None
     time = None
-    for i in range(1, lines):
+    for i in range(1, len(lines)):
         line = lines[i].strip()
+        print(line)
         if len(line) == len(splitor) and line == splitor:
             count += 1
         if count == 0:
-            log_data += line
+            log_data += line+"\n"
         elif count == 1:
-            score = line
+            score = line+"%"
         elif count == 2:
-            time = line
+            time = line+"ms"
     return log_data, score, time
 
 
@@ -176,6 +183,7 @@ def evaluate_students(path, testcase):
 
 def interface(testcase_file, basedir):
     testcases = read_file(testcase_file)
+    print(testcases)
     results = evaluate_students(basedir, testcases)
     result_file = basedir + "/results/student_record.xls"
     writer.write(result_file, results)
