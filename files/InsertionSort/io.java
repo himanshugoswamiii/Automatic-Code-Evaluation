@@ -124,8 +124,8 @@ public class IO{
 
 				double start = System.currentTimeMillis();
 				
-				student_result [current]  = solution.sort(data,passN);
-				expected_result[current] = IO.sort(data,passN);
+				student_result [current]  = solution.sort(Arrays.copyOf(data,data.length),passN);
+				expected_result[current] = IO.sort(Arrays.copyOf(data,data.length),passN);
 
 				double end = System.currentTimeMillis();
 
