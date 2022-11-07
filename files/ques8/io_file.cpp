@@ -129,7 +129,7 @@ int**   teacher(int ** mat1 ,  int r1 , int c1 , int ** mat2 , int r2 , int c2,i
 } 
 
 
-bool check_matrix_equal(int ** mat1 , int mat2, int r,int c){
+bool check_matrix_equal(int ** mat1 , int ** mat2, int r,int c){
 	
 	if (mat1==NULL&&mat2==NULL)
 	{
@@ -208,16 +208,16 @@ int main()
 
 		for (int i = 0; i < 4; ++i)
 		{
-			int ** result = teacher(mat1,r1,c1,mat2,r2,c2,option);
+			int ** result = teacher(mat1,r1,c1,mat2,r2,c2,i);
 			
-			int ** student_result = solution(mat1,r1,c1,mat2,r2,c2,option);
+			int ** student_result = solution(mat1,r1,c1,mat2,r2,c2,i);
 			
 			int result_row,result_column;
 			
 			if(i<=1)
 			{
 				result_row = r1;
-				result_column = r2;
+				result_column = c2;
 			}
 			else if (i==2)
 			{
