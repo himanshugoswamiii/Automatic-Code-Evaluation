@@ -2,9 +2,13 @@
 #include<ctime>
 using namespace std;
 
+namespace student
+
+{
+
 int   solution(int * data , int n ){
 
-        while(true);
+    
 	
 	int total = 0;
     
@@ -31,5 +35,7 @@ int   solution(int * data , int n ){
     }
     
     return total+1;
+
+}
 
 }

@@ -2,6 +2,10 @@
 #include<ctime>
 using namespace std;
 
+
+namespace student
+{
+
 int**   solution(int ** mat1 ,  int r1 , int c1 , int ** mat2 , int r2 , int c2,int option){
 
 	if (option==0)
@@ -130,3 +134,5 @@ int**   solution(int ** mat1 ,  int r1 , int c1 , int ** mat2 , int r2 , int c2,
 
 
 } 
+
+}

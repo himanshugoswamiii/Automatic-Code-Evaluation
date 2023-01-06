@@ -2,6 +2,9 @@
 #include<ctime>
 using namespace std;
 
+namespace student
+{
+
 int solution(string in , char character ){
 
 	int ans = 0;
@@ -13,5 +16,7 @@ int solution(string in , char character ){
 	
 	}
 	return ans+1;
+
+}
 
 }

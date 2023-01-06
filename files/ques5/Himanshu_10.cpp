@@ -2,6 +2,9 @@
 #include<ctime>
 using namespace std;
 
+namespace student
+{
+
 int *  solution(int * array1 , int m , int * array2 , int n ){
 
 	int * result = new int[m+n];
@@ -28,4 +31,6 @@ int *  solution(int * array1 , int m , int * array2 , int n ){
 	result[0] = 0;
 
 	return result;
+}
+
 }

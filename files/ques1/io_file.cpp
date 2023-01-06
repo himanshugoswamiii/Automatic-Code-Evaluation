@@ -52,11 +52,11 @@ void printLog(int n , int * input , double * student , double * expected , doubl
 }
 
 
-int   power(int num){
+long long   power(int num){
 
-	int  res = 1;
+	long long   res = 1;
 
-	int mod = 1_000_000_007;
+	int mod = 1000000007;
 
 	for(int i = 1;i<=num;i++)
 		res=(res*num)%mod;
@@ -108,7 +108,7 @@ int main()
 		int t1 = time(NULL); 
 
 
-		double ans = solution(n);
+		double ans = student::solution(n);
 
 		int t2 = time(NULL);
 

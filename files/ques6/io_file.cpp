@@ -1,12 +1,24 @@
 
-int   teacher(int * array1 , int m  ){
+int teacher(int *array , int m  , int key ){
 
 	int low = 0;
 	
 	int high = m-1;
 	
 	while(low<=high){
+
+		int mid = (low+high)/2;
+
+		if (array[mid]==key)  return mid;
+		
+		else if (array[mid]<key)
+			low = mid + 1;
+		
+		else
+			high = mid  - 1;
+	}
 	
+	return -1;
 	
 }
 
@@ -27,25 +39,27 @@ int main()
 	
 	while(current<testcase){
 		
-		int m,n;
+		int m;
 
-		cin>>m>>n;
+		cin>>m;
 
-		int * array1 = new int[m];
+		int * array = new int[m];
 
-		int * array2 = new int[n];
+	
 
-		for (int i = 0; i < m; ++i) cin>>array1[i];
+		for (int i = 0; i < m; ++i) cin>>array[i];
 		
-		for (int i = 0; i < n; ++i) cin>>array2[i];
+		int key ;
+
+		cin>>key;
 
 
 
-		int * result = teacher(array1,m,array2,n);
+		int  result = teacher(array,m,key);
 
 		int t1 = time(NULL);
 
-		int * student_result = solution(array1 , m , array2,n);
+		int student_result = student::solution(array , m , key);
 
 		int t2 = time(NULL);
 
@@ -53,40 +67,20 @@ int main()
 
 		bool equal = true;
 
-		for (int i = 0; i < m+n; ++i)
-		{
-			if (result[i]!=student_result[i])
-			{
-				equal = false;
-				break;
-			}
-		}
-
-		if(equal)
+		if(result == student_result)
 			score++;
 
 		cout<<"[ ";
 
 		for (int i = 0; i < m-1; ++i)
 		{
-			cout<<array1[i]<<",";
+			cout<<array[i]<<",";
 		}
 
-		cout<<array1[m-1]<<" ] , [";
+		if(m-1>=0)
+		cout<<array[m-1];
 
-		for (int i = 0; i < n-1; ++i)
-		{
-			cout<<array2[i]<<",";
-		}
-
-		cout<<array2[n-1]<<" ] --> [";
-
-		for (int i = 0; i < m+n-1; ++i)
-		{
-			cout<<student_result[i]<<",";
-		}
-
-		cout<<student_result[m+n-1]<<" ] ( "<<(equal?"Accepted":"Rejected")<<" )"<<endl;
+		cout<<" ] "<<" [ "<<key<<" ] ( "<<student_result<<" ) "<<" ( "<<(student_result==result?"Accepted":"Rejected")<<" )"<<endl;
 
 
 		current++;

@@ -60,7 +60,7 @@ int main()
 
 		int t1 = time(NULL);
 
-		int * student_result = solution(array1 , m , array2,n);
+		int * student_result = student::solution(array1 , m , array2,n);
 
 		int t2 = time(NULL);
 
@@ -87,21 +87,29 @@ int main()
 			cout<<array1[i]<<",";
 		}
 
-		cout<<array1[m-1]<<" ] , [";
+		if(m-1>=0)
+			cout<<array1[m-1];
+		cout<<" ] , [";
 
 		for (int i = 0; i < n-1; ++i)
 		{
 			cout<<array2[i]<<",";
 		}
 
-		cout<<array2[n-1]<<" ] --> [";
+		if(n-1>=0)
+			cout<<array2[n-1];
+		
+		cout<<" ] --> [";
 
 		for (int i = 0; i < m+n-1; ++i)
 		{
 			cout<<student_result[i]<<",";
 		}
-
-		cout<<student_result[m+n-1]<<" ] ( "<<(equal?"Accepted":"Rejected")<<" )"<<endl;
+		
+		if(m+n-1>=0)
+		cout<<student_result[m+n-1];
+		
+		cout<<" ] ( "<<(equal?"Accepted":"Rejected")<<" )"<<endl;
 
 
 		current++;

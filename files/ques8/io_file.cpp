@@ -204,14 +204,19 @@ int main()
 			}
 		}
 
-		bool equal = true;
 
 		for (int i = 0; i < 4; ++i)
 		{
 			int ** result = teacher(mat1,r1,c1,mat2,r2,c2,i);
 			
-			int ** student_result = solution(mat1,r1,c1,mat2,r2,c2,i);
+			int t1 = time(NULL);
+
+			int ** student_result = student::solution(mat1,r1,c1,mat2,r2,c2,i);
 			
+			int t2 = time(NULL);
+
+			time_+=t2-t1;
+
 			int result_row,result_column;
 			
 			if(i<=1)
@@ -232,18 +237,26 @@ int main()
 				result_column = r2;
 			
 			}
+
+			bool equal = false;
 			
-			equal = equal && check_matrix_equal(result,student_result,result_row,result_column);
+			if(check_matrix_equal(result,student_result,result_row,result_column))
+				{
+					score++;
+					equal = true;
+				}
+			string op;
+			if(i==0)
+				op = "Sum ";
+			else if(i==1)
+				op = "Product ";
+			else if(i==2)
+				op="Transpose matrix 1 ";
+			else
+				op = "Transpose matrix 2 ";
+
+			cout<<"Testcase ["<<current+1<<" , "<<op<<"] -> "<<(equal?"Accepted":"Rejected")<<endl;
 		}
-
-
-
-
-
-		if(equal)
-			score++;
-
-		cout<<"Testcase "<<current+1<<" -> "<<(equal?"Accepted":"Rejected")<<endl;
 
 		current++;
 	}
@@ -251,13 +264,13 @@ int main()
 	
 	cout<<"#"<<endl;
 
-	score = (score/testcase)*100;
+	score = (score/(testcase*4))*100;
 
 	cout<<score<<endl;
 
 	cout<<"#"<<endl;
 
-	time_=(time_/testcase)*1000;
+	time_=(time_/(testcase*4))*1000;
 
 	cout<<time<<endl;
 

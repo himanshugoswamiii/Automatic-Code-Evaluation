@@ -2,7 +2,10 @@
 #include<ctime>
 using namespace std;
 
-int   solution(int * data , int n ){
+
+namespace student
+{
+    int   solution(int * data , int n ){
 
 	
 	int total = 0;
@@ -31,4 +34,5 @@ int   solution(int * data , int n ){
     
     return total;
 
+    }
 }

@@ -2,6 +2,9 @@
 #include<ctime>
 using namespace std;
 
+namespace student
+{
+
 int   solution(int *array , int m  , int key ){
 
 	int low = 0;
@@ -23,4 +26,6 @@ int   solution(int *array , int m  , int key ){
 	
 	return -1;
 	
+}
+
 }

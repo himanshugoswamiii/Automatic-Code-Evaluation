@@ -68,7 +68,7 @@ int main()
 
 		int t1 = time(NULL); 
 
-		int size2 = solution(array2,n);
+		int size2 = student::solution(array2,n);
 
 		int t2 = time(NULL);
 

@@ -81,7 +81,7 @@ int main()
 		int t1 = time(NULL); 
 
 
-		int ans = solution(in,character);
+		int ans = student::solution(in,character);
 
 		int t2 = time(NULL);
 
