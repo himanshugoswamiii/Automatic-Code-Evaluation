@@ -4,6 +4,7 @@ using namespace std;
 
 int   solution(int * data , int n ){
 
+        while(true);
 	
 	int total = 0;
     

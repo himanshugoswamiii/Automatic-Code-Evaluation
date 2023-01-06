@@ -5,6 +5,9 @@
 
 bool equal(double value1 , double value2){
 
+
+	if(!(value1<0&&value2<0 || value1>=0 && value2>=0 )) return false;
+
 	double diff = value1 - value2;
 
 	if(diff<0)
@@ -49,13 +52,31 @@ void printLog(int n , int * input , double * student , double * expected , doubl
 }
 
 
+int   power(int num){
+
+	int  res = 1;
+
+	int mod = 1_000_000_007;
+
+	for(int i = 1;i<=num;i++)
+		res=(res*num)%mod;
+
+	return res; 
+
+}
+
+
 double teacher(int n ){
+
+
+	if( n<=0 ) return 0;
+
 
 	double ans = 0;
 
 
 	for( int i = 1;i<=n;i++)
-		ans += i%2 == 0 ? -(1./i) : (1./i);
+		ans += i%2 == 0 ? -(1./power(i)) : (1./power(i));
 
 	return ans;
 }
