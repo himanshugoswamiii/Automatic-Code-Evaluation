@@ -2,7 +2,7 @@
 #include<ctime>
 using namespace std;
 
-double solution(int n ){
+double solution(int n){
 
 	double ans = 0;
 

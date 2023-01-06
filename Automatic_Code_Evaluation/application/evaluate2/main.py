@@ -117,8 +117,8 @@ def output(filename, basedir, std_in=''):
         metadata = get_metadata(language=language_details[0], version_index=language_details[1], std_in=std_in,
                                 script=data + "\n" + io_data)
 
-        with open("/home/aniket/Downloads/Codes/temp.java" ,'w') as f:
-            f.write(data + "\n" + io_data)
+        # with open("/home/aniket/Downloads/Codes/temp.java" ,'w') as f:
+        #     f.write(data + "\n" + io_data)
 
         print(metadata)
         response = execute(metadata)
