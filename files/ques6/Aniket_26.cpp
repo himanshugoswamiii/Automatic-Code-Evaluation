@@ -2,7 +2,7 @@
 #include<ctime>
 using namespace std;
 
-int   solution(int * array , int m  , int key ){
+int solution(int *array , int m  , int key ){
 
 	int low = 0;
 	
