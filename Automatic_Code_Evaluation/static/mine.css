@@ -1,21 +1,5 @@
-@font-face {
-    font-family: 'RecCasual';
-    /*src: url('/home/himanshu/Desktop/Automatic-Code-Evaluation/Automatic_Code_Evaluation/static/fonts/RecursiveSansCslSt-Regular.ttf') format('truetype');*/
-    src: url('/fonts/RecursiveSansCslSt-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'RecCasual';
-    /*src: url('/home/himanshu/Desktop/Automatic-Code-Evaluation/Automatic_Code_Evaluation/static/fonts/RecursiveSansCslSt-Regular.ttf') format('truetype');*/
-    src: url('/fonts/RecursiveSansCslSt-Bold.ttf') format('truetype');
-    font-weight: Bold;
-    font-style: Bold;
-}
-
 .myfont {
-    font-family: 'RecCasual' !important;
+    font-family: 'Recursive', monospace !important;
 }
 
 .ace_content {

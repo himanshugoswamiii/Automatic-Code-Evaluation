@@ -7,7 +7,7 @@ import shutil
 from django.shortcuts import render
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Modify no of parents according to this file's location
-basedir = os.path.join(BASE_DIR, 'media/')
+basedir = os.path.join(BASE_DIR.parent, 'extra/')
 
 
 def fetch_files(request):
@@ -40,7 +40,7 @@ def download(result_file):
 
 def cleanup(request):
     ip = request.META.get('REMOTE_ADDR').replace('.', '_')
-    shutil.rmtree(basedir + str(ip))
+    shutil.rmtree(basedir + str(ip), ignore_errors = True)
 
 
 # To upload the file
