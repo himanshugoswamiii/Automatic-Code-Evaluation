@@ -2,12 +2,14 @@
 media: directory where our files (teacher,test case, student) will be stored
 
 ## Modules required
+`django`
 `xlwt` - to create spreadsheet files compatible with MS Excel
+`requests` 
 
 *Installation:*
 
 ```
-pip install xlwt
+pip install django xlwt requests
 ```
 
 yes : 

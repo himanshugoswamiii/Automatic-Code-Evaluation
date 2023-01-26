@@ -1,8 +1,9 @@
-from django.contrib import admin
+# from django.contrib import admin
 from django.urls import path
-from application.evaluate import evaluator as ev1
-from application.evaluate2 import evaluator as ev2
-from application import views
+from .evaluate import evaluator as ev1
+from .evaluate2 import evaluator as ev2
+# from application import views -- This is changed for below
+from . import views
 
 urlpatterns = [
     path('', views.index),
